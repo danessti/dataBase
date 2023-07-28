@@ -7,6 +7,7 @@ import List.CustomInStack;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -41,6 +42,18 @@ public class Main {
                 passengers,
                 passenger -> passenger.getAge() > 18
         );
+
+        // streams
+        passengers
+                .stream()
+                .filter( passenger -> passenger.getAge() > 65)
+                .collect(Collectors.toList());
+
+        List<String> doctorNamePassengers = passengers
+                .stream()
+                .filter( passenger -> passenger.isCareer(Career.DOCTOR))
+                .map(passenger -> passenger.getName())
+                .collect(Collectors.toList());
 
     }
 
